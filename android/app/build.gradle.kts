@@ -59,6 +59,7 @@ kotlin {
 }
 
 ktlint {
+    version.set(libs.versions.ktlintCore.get())
     android.set(true)
     verbose.set(true)
     outputToConsole.set(true)
@@ -70,6 +71,8 @@ ktlint {
 }
 
 dependencies {
+    ktlintRuleset(projects.ktlintRules)
+
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)

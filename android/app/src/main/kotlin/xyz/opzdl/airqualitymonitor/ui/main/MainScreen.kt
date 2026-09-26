@@ -17,6 +17,7 @@ fun MainScreen(
     viewModel: MainScreenViewModel = viewModel { MainScreenViewModel(DefaultDataRepository()) },
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+
     when (state) {
         MainScreenUiState.Loading -> {
             // Blank
