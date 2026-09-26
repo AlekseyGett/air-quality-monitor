@@ -1,0 +1,47 @@
+config:
+  validation: true
+
+naming:
+  # Duplicate KtLint rules:
+  ClassNaming:
+    active: false
+  EnumNaming:
+    active: false
+  FunctionNaming:
+    active: false
+  MatchingDeclarationName:
+    active: false
+  ObjectPropertyNaming:
+    active: false
+  PackageNaming:
+    active: false
+  TopLevelPropertyNaming:
+    active: false
+  VariableNaming:
+    active: false
+
+empty-blocks:
+  # Duplicate KtLint rules:
+  EmptyClassBlock:
+    active: false
+  EmptyKotlinFile:
+    active: false
+
+style:
+  UnusedPrivateFunction:
+    ignoreAnnotated:
+      - Preview
+  # Duplicate KtLint rules:
+  MaxLineLength:
+    active: false
+  ModifierOrder:
+    active: false
+  NewLineAtEndOfFile:
+    active: false
+  WildcardImport:
+    active: false
+
+complexity:
+  TooManyFunctions:
+    ignoreAnnotatedFunctions:
+      - Preview

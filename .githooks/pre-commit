@@ -1,0 +1,35 @@
+#!/bin/sh
+
+set -u
+
+repository_root=$(git rev-parse --show-toplevel) || exit $?
+hook_status=0
+
+run_project_hook() {
+    project_path=$1
+    project_hook=$2
+
+    git -C "$repository_root" diff --cached --quiet -- "$project_path"
+    diff_status=$?
+
+    if [ "$diff_status" -eq 0 ]; then
+        return
+    fi
+
+    if [ "$diff_status" -ne 1 ]; then
+        echo "Unable to inspect staged changes for $project_path" >&2
+        hook_status=$diff_status
+        return
+    fi
+
+    "$repository_root/$project_hook"
+    project_status=$?
+
+    if [ "$project_status" -ne 0 ]; then
+        hook_status=$project_status
+    fi
+}
+
+run_project_hook "android" "scripts/hooks/android-pre-commit"
+
+exit "$hook_status"

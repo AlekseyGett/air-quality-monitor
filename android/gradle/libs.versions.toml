@@ -1,6 +1,8 @@
 [versions]
 androidGradlePlugin = "9.3.3"
-
+kotlin = "2.4.20"
+ktlint = "14.2.0"
+detekt = "2.0.0-alpha.6"
 androidxCore = "1.19.1"
 androidxActivity = "1.13.0"
 androidxComposeBom = "2026.09.00"
@@ -11,7 +13,6 @@ androidxTestRunner = "1.7.0"
 androidxTestEspresso = "3.7.0"
 coroutines = "1.11.0"
 junit = "4.13.2"
-kotlin = "2.4.20"
 nav3Core = "1.2.0"
 lifecycleViewmodelNav3 = "2.11.0"
 
@@ -48,3 +49,5 @@ androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecy
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+detekt = { id = "dev.detekt", version.ref = "detekt" }
