@@ -17,16 +17,14 @@ fun MainNavigation() {
     NavDisplay(
         backStack = backStack,
         onBack = { backStack.removeLastOrNull() },
-        entryProvider =
-            entryProvider {
-                entry<MainDestination> {
-                    MainScreen(
-                        modifier =
-                            Modifier
-                                .safeDrawingPadding()
-                                .padding(16.dp),
-                    )
-                }
-            },
+        entryProvider = entryProvider {
+            entry<MainDestination> {
+                MainScreen(
+                    modifier = Modifier
+                        .safeDrawingPadding()
+                        .padding(16.dp),
+                )
+            }
+        },
     )
 }
