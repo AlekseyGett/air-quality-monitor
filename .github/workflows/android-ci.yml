@@ -1,0 +1,77 @@
+name: Android CI
+
+on:
+  pull_request:
+    paths:
+      - "android/**"
+      - ".github/workflows/android-ci.yml"
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: android
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Run unit tests
+        run: ./gradlew test --console=plain
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-test-reports
+          path: |
+            android/**/build/reports/tests/**
+            android/**/build/test-results/**
+          if-no-files-found: warn
+          retention-days: 14
+
+  code-quality:
+    name: Code quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Run ktlint and detekt
+        run: ./gradlew ktlintCheck detekt --continue --console=plain
+
+      - name: Upload code quality reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-quality-reports
+          path: |
+            android/**/build/reports/ktlint/**
+            android/**/build/reports/detekt/**
+          if-no-files-found: warn
+          retention-days: 14
