@@ -32,7 +32,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v6
 
       - name: Run unit tests
-        run: ./gradlew testDebugUnitTest --console=plain
+        run: ./gradlew test --console=plain
 
       - name: Upload test reports
         if: always()
