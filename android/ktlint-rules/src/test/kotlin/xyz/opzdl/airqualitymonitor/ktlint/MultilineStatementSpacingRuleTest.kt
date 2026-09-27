@@ -35,8 +35,6 @@ class MultilineStatementSpacingRuleTest {
             }
             """.trimIndent()
 
-        error("something went wrong")
-
         assertThatRule(code)
             .hasLintViolation(
                 line = 5,
