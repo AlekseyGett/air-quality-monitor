@@ -1,0 +1,2 @@
+bme280.c whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+include/*.h whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
