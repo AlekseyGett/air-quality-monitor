@@ -730,6 +730,19 @@ CONFIG_PARTITION_TABLE_MD5=y
 # end of Partition Table
 
 #
+# Air Quality Monitor
+#
+# default:
+CONFIG_AQM_I2C_SDA_GPIO=-1
+# default:
+CONFIG_AQM_I2C_SCL_GPIO=-1
+# default:
+CONFIG_AQM_BME280_ADDRESS_76=y
+# default:
+# CONFIG_AQM_BME280_ADDRESS_77 is not set
+# end of Air Quality Monitor
+
+#
 # Compiler options
 #
 # default:

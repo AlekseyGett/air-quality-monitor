@@ -1,0 +1,18 @@
+menu "Air Quality Monitor"
+    config AQM_I2C_SDA_GPIO
+        int "I2C SDA GPIO (-1 = unset)"
+        range -1 39
+        default -1
+    config AQM_I2C_SCL_GPIO
+        int "I2C SCL GPIO (-1 = unset)"
+        range -1 39
+        default -1
+    choice AQM_BME280_ADDRESS
+        prompt "BME280 I2C address"
+        default AQM_BME280_ADDRESS_76
+        config AQM_BME280_ADDRESS_76
+            bool "0x76"
+        config AQM_BME280_ADDRESS_77
+            bool "0x77"
+    endchoice
+endmenu
