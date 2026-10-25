@@ -1,4 +1,5 @@
 #include "bme280_sensor.h"
+#include "ble_measurements.h"
 #include "shared_i2c.h"
 #include "esp_log.h"
 #include "esp_timer.h"
@@ -9,6 +10,8 @@
 extern "C" void app_main(void)
 {
     constexpr const char *tag = "aqm";
+    esp_err_t ble_error = aqm::start_ble();
+    if (ble_error != ESP_OK) ESP_LOGE(tag, "BLE startup failed (%s); sensor acquisition continues", esp_err_to_name(ble_error));
     i2c_master_bus_handle_t bus = nullptr;
     esp_err_t error = aqm::create_i2c_bus(CONFIG_AQM_I2C_SDA_GPIO, CONFIG_AQM_I2C_SCL_GPIO, &bus);
     if (error != ESP_OK)
@@ -28,6 +31,7 @@ extern "C" void app_main(void)
         aqm::Measurement sample;
         error = sensor.cycle(sample);
         if (error != ESP_OK) ESP_LOGW(tag, "BME280 cycle failed: %s; retry next cycle", esp_err_to_name(error));
+        aqm::publish_measurement(sample);
         char line[192];
         aqm::format_measurement(sample, line, sizeof(line));
         ESP_LOGI(tag, "%s", line);

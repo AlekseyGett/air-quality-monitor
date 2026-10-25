@@ -1,0 +1,3 @@
+#pragma once
+#define CONFIG_AQM_I2C_SDA_GPIO 18
+#define CONFIG_AQM_I2C_SCL_GPIO 19
